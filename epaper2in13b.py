@@ -1,7 +1,7 @@
 """
 MicroPython Waveshare 2.13" Black/White/Red GDEW0213Z16 e-paper display driver
 https://github.com/mcauser/micropython-waveshare-epaper
-
+ERRORS ARE FIXED
 MIT License
 Copyright (c) 2017 Waveshare
 Copyright (c) 2018 Mike Causer
