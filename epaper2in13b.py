@@ -65,7 +65,7 @@ RESOLUTION_SETTING             = const(0x61)
 #GET_STATUS                     = const(0x71) # partial update status, i2c status, data received, power status, busy
 #AUTO_MEASURE_VCOM              = const(0x80)
 #VCOM_VALUE                     = const(0x81)
-VCM_DC_SETTING                 = const(0x82)
+VCM_DC_SETTING_REGISTER         = const(0x82)
 #PARTIAL_WINDOW                 = const(0x90)
 #PARTIAL_IN                     = const(0x91)
 #PARTIAL_OUT                    = const(0x92)
@@ -150,20 +150,20 @@ class EPD:
     def set_rotate(self, rotate):
         if (rotate == ROTATE_0):
             self.rotate = ROTATE_0
-            self.width = epdif.EPD_WIDTH
-            self.height = epdif.EPD_HEIGHT
+            self.width = EPD_WIDTH
+            self.height = EPD_HEIGHT
         elif (rotate == ROTATE_90):
             self.rotate = ROTATE_90
-            self.width = epdif.EPD_HEIGHT
-            self.height = epdif.EPD_WIDTH
+            self.width = EPD_HEIGHT
+            self.height = EPD_WIDTH
         elif (rotate == ROTATE_180):
             self.rotate = ROTATE_180
-            self.width = epdif.EPD_WIDTH
-            self.height = epdif.EPD_HEIGHT
+            self.width = EPD_WIDTH
+            self.height = EPD_HEIGHT
         elif (rotate == ROTATE_270):
             self.rotate = ROTATE_270
-            self.width = epdif.EPD_HEIGHT
-            self.height = epdif.EPD_WIDTH
+            self.width = EPD_HEIGHT
+            self.height = EPD_WIDTH
 
     def set_pixel(self, frame_buffer, x, y, colored):
         if (x < 0 or x >= self.width or y < 0 or y >= self.height):
@@ -172,17 +172,17 @@ class EPD:
             self.set_absolute_pixel(frame_buffer, x, y, colored)
         elif (self.rotate == ROTATE_90):
             point_temp = x
-            x = epdif.EPD_WIDTH - y
+            x = EPD_WIDTH - y
             y = point_temp
             self.set_absolute_pixel(frame_buffer, x, y, colored)
         elif (self.rotate == ROTATE_180):
-            x = epdif.EPD_WIDTH - x
-            y = epdif.EPD_HEIGHT- y
+            x = EPD_WIDTH - x
+            y = EPD_HEIGHT- y
             self.set_absolute_pixel(frame_buffer, x, y, colored)
         elif (self.rotate == ROTATE_270):
             point_temp = x
             x = y
-            y = epdif.EPD_HEIGHT - point_temp
+            y = EPD_HEIGHT - point_temp
             self.set_absolute_pixel(frame_buffer, x, y, colored)
 
     def set_absolute_pixel(self, frame_buffer, x, y, colored):
